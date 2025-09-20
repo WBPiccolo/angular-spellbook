@@ -1,122 +1,95 @@
-<app-accordion>
-    <form [formGroup]="spellForm" class="space-y-4">
-        <!-- Row 1 -->
-        <div class="flex justify-between mb-4 flex-wrap">
-            @if(spellForm.controls['name']) {
-            <div class="w-[40%] mr-2 mb-2">
+<app-accordion openHeader="close form" closeHeader="open form">
+    <form [formGroup]="spellForm">
+        <div class="flex justify-between item-center mb-4 gap-4">
+            <div class="basis-2/5">
                 <label for="formControlName" class="block font-bold mb-1.5">Spell name</label>
                 <input id="formControlName" type="text" formControlName="name"
-                    class="w-full p-2 border border-gray-300 rounded text-sm" />
+                    class="w-full p-2 border border-gray-300 bg-white rounded text-sm" />
             </div>
-            }
 
-            @if(spellForm.controls['level']) {
-            <div class="w-[20%] mr-2 mb-2">
+            <div class="basis-1/12">
                 <label for="formControlLevel" class="block font-bold mb-1.5">Level</label>
                 <select id="formControlLevel" formControlName="level"
-                    class="w-full p-2 border border-gray-300 rounded text-sm">
+                    class="w-full p-2 border border-gray-300 bg-white rounded text-sm">
                     @for (level of levels; track $index) {
                     <option [ngValue]="level" class="p-2">{{ level }}</option>
                     }
                 </select>
             </div>
-            }
 
-            @if(spellForm.controls['school']) {
-            <div class="w-[20%] mr-2 mb-2">
+            <div class="basis-1/6">
                 <label for="formControlSchool" class="block font-bold mb-1.5">School</label>
                 <select id="formControlSchool" formControlName="school"
-                    class="w-full p-2 border border-gray-300 rounded text-sm">
+                    class="w-full p-2 border border-gray-300 bg-white rounded text-sm">
                     @for (school of schools; track $index) {
                     <option [ngValue]="school" class="p-2">{{ school }}</option>
                     }
                 </select>
             </div>
-            }
 
-            <div class="flex items-center gap-4">
-                @if(spellForm.controls['requiresConcentration']) {
+            <div class="basis-1/5 flex flex-col items-center justify-end">
                 <label class="flex items-center">
                     <input id="formControlRequiresConcentration" type="checkbox" formControlName="requiresConcentration"
                         class="mr-1" />
                     <span>Concentration</span>
                 </label>
-                }
-                @if(spellForm.controls['isRitual']) {
+
                 <label class="flex items-center">
                     <input id="formControlIsRitual" type="checkbox" formControlName="isRitual" class="mr-1" />
                     <span>isRitual</span>
                 </label>
-                }
             </div>
         </div>
 
-        <!-- Row 2 -->
-        <div class="flex justify-between mb-4 flex-wrap">
-            @if(spellForm.controls['castingTime']) {
-            <div class="w-[60%] mr-2 mb-2">
+        <div class="flex justify-between mb-4">
+            <div class="w-3/5 mr-2 mb-2">
                 <label for="formControlCastingTime" class="block font-bold mb-1.5">Casting Time</label>
                 <input id="formControlCastingTime" type="text" formControlName="castingTime"
-                    class="w-full p-2 border border-gray-300 rounded text-sm" />
+                    class="w-full p-2 border border-gray-300 bg-white rounded text-sm" />
             </div>
-            }
 
-            @if(spellForm.controls['duration']) {
-            <div class="w-[20%] mr-2 mb-2">
+
+            <div class="w-1/5 mr-2 mb-2">
                 <label for="formControlDuration" class="block font-bold mb-1.5">Duration</label>
                 <input id="formControlDuration" type="text" formControlName="duration"
-                    class="w-full p-2 border border-gray-300 rounded text-sm" />
+                    class="w-full p-2 border border-gray-300 bg-white rounded text-sm" />
             </div>
-            }
 
-            @if(spellForm.controls['range']) {
-            <div class="w-[20%] mb-2">
+            <div class="w-1/5 mb-2">
                 <label for="formControlRange" class="block font-bold mb-1.5">Range</label>
                 <input id="formControlRange" type="text" formControlName="range"
-                    class="w-full p-2 border border-gray-300 rounded text-sm" />
+                    class="w-full p-2 border border-gray-300 bg-white rounded text-sm" />
             </div>
-            }
         </div>
 
-        <!-- Row 3 -->
-        @if(spellForm.controls['description']) {
         <div class="mb-4">
             <label for="formControlDescription" class="block font-bold mb-1.5">Description</label>
             <textarea id="formControlDescription" formControlName="description" rows="4"
-                class="w-full p-2 border border-gray-300 rounded text-sm resize-y"></textarea>
+                class="w-full p-2 border border-gray-300 bg-white rounded text-sm resize-y"></textarea>
         </div>
-        }
 
-        <!-- Row 4 -->
-        @if(spellForm.controls['atHigherLevels']) {
         <div class="mb-4">
-            <label for="formControlAtHigherLevels" class="block font-bold mb-1.5">atHigherLevels</label>
+            <label for="formControlAtHigherLevels" class="block font-bold mb-1.5">At higher levels</label>
             <textarea id="formControlAtHigherLevels" formControlName="atHigherLevels" rows="4"
-                class="w-full p-2 border border-gray-300 rounded text-sm resize-y"></textarea>
+                class="w-full p-2 border border-gray-300 bg-white rounded text-sm resize-y"></textarea>
         </div>
-        }
 
-        <!-- Row 5 -->
-        <div class="flex justify-between mb-4 flex-wrap">
-            @if(spellForm.controls['components']) {
+        <div class="flex justify-between mb-4">
             <div class="w-[70%] mr-2 mb-2">
                 <label for="formControlComponents" class="block font-bold mb-1.5">Components</label>
                 <input id="formControlComponents" type="text" formControlName="components"
-                    class="w-full p-2 border border-gray-300 rounded text-sm" />
+                    class="w-full p-2 border border-gray-300 bg-white rounded text-sm" />
             </div>
-            }
 
-            @if(spellForm.controls['class']) {
             <div class="w-[30%] mb-2">
                 <label for="formControlClass" class="block font-bold mb-1.5">Class</label>
                 <select id="formControlClass" formControlName="class"
-                    class="w-full p-2 border border-gray-300 rounded text-sm">
+                    class="w-full p-2 border border-gray-300 bg-white rounded text-sm">
                     @for (class of classes; track $index) {
                     <option [ngValue]="class" class="p-2">{{ class }}</option>
                     }
                 </select>
             </div>
-            }
         </div>
     </form>
 </app-accordion>

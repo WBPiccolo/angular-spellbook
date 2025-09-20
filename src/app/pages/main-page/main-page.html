@@ -1,7 +1,13 @@
-<div class="px-20 py-10">
+<div class="px-96 py-10">
+    <div class="mb-32">
+        <span (click)="spellbookStore.saveSpellbookToFile()">SALVA JSON</span>
+        <input [disabled]="false" id="file-upload" type="file" class="hidden" (change)="fileChanged($event)"
+            accept=".json" #fileUpload />
+        <button [disabled]="false" (click)="fileUpload.click()">EXPORT</button>
 
-<app-insert-spell-form></app-insert-spell-form>
+    </div>
+    <app-insert-spell-form></app-insert-spell-form>
 
-<app-spellbook></app-spellbook>
+    <app-spellbook></app-spellbook>
 
 </div>

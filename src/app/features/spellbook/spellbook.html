@@ -1,1 +1,3 @@
-<p>spellbook works!</p>
+@for(spell of spellStore.spells(); track $index) {
+<app-spell-card [spell]="spell" (click)="spellStore.deleteSpell(spell)"></app-spell-card>
+}
