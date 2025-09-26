@@ -24,6 +24,9 @@ export const SpellStore = signalStore(
         },
         loadSpellbookFromLocalStorage: () => {
             const localStorageData = localStorage.getItem(localStorageKey) || '';
+            if (!localStorageData) {
+                return;
+            }
             const spellbook = JSON.parse(localStorageData) as Spell[];
             if (spellbook?.length) {
                 patchState(store, { spells: spellbook })

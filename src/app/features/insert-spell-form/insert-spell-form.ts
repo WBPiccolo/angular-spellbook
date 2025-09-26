@@ -5,7 +5,6 @@ import { Spell } from '../../shared/models/spell.interface';
 import { SCHOOLS } from '../../shared/const/schools.const';
 import { CLASS_COLORS, CLASSES } from '../../shared/const/classes.const';
 import { LEVELS } from '../../shared/const/levels.const';
-
 @Component({
   selector: 'app-insert-spell-form',
   imports: [Accordion, ReactiveFormsModule],

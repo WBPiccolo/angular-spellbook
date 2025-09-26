@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, effect, inject, OnInit } from '@angular/core';
 import { InsertSpellForm } from '../../features/insert-spell-form/insert-spell-form';
 import { Spellbook } from "../../features/spellbook/spellbook";
 import { SpellStore } from '../../core/store/spellbook.store';
@@ -12,17 +12,21 @@ import { SpellStore } from '../../core/store/spellbook.store';
 export class MainPage implements OnInit {
   spellbookStore = inject(SpellStore);
 
+  constructor() {
+    effect(() => {
+      this.spellbookStore.saveSpellbookToLocalStorage();
+    })
+  }
+
   ngOnInit(): void {
-    this.spellbookStore.saveSpellbookToLocalStorage();
+    this.spellbookStore.loadSpellbookFromLocalStorage();
   }
 
   fileChanged(event: Event) {
     const target = event.target as HTMLInputElement;
     const file = target.files?.[0] as File;
     if (file) {
-      console.log('file', file)
       this.spellbookStore.loadSpellbookFromFile(file);
-      //this.importClick.emit(file);
     }
   }
 }

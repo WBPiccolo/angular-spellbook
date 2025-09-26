@@ -1,3 +1,6 @@
-@for(spell of spellStore.spells(); track $index) {
-<app-spell-card [spell]="spell" (click)="spellStore.deleteSpell(spell)"></app-spell-card>
-}
+<div class="grid grid-cols-3">
+    @for(spell of spellStore.spells(); track $index) {
+    <!-- <app-spell-card [spell]="spell" (click)="spellStore.deleteSpell(spell)"></app-spell-card> -->
+    <app-spell-card [spell]="spell"></app-spell-card>
+    }
+</div>

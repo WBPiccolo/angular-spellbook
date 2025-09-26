@@ -1,1 +1,49 @@
-{{spell.name}}
+<div class="relative m-4 aspect-[2/3] rounded-xl border-4 p-4 text-center shadow-[inset_0_0_12px_rgba(0,0,0,0.2)]"
+    [style.border-color]="borderColor">
+
+    <!-- Spell Name -->
+    <div class="mb-2 border-b-2 pb-1 font-['Cinzel_Decorative'] text-xl font-bold text-shadow">
+        {{ spell.name }}
+    </div>
+
+    <!-- Metadata -->
+    <div class="mb-2 border-b border-dashed border-black/30 pb-1 font-['EB_Garamond'] italic">
+        {{ formattedSpellLevel }} {{ spell.school }}
+        <i>
+            {{ spell.requiresConcentration ? ', Requires Concentration' : '' }}
+            {{ spell.isRitual ? ', Ritual' : '' }}
+        </i>
+    </div>
+
+    <!-- Casting Info -->
+    <div class="mb-2 grid grid-cols-3 gap-2 border-b border-black/20 pb-1">
+        <div>
+            <div class="font-['Cinzel'] font-bold text-[#3a2b0d]">⚡</div>
+            <div class="italic">{{ spell.castingTime }}</div>
+        </div>
+        <div>
+            <div class="font-['Cinzel'] font-bold text-[#3a2b0d]">📏</div>
+            <div class="italic">{{ spell.range }}</div>
+        </div>
+        <div>
+            <div class="font-['Cinzel'] font-bold text-[#3a2b0d]">🕛</div>
+            <div class="italic">{{ spell.duration }}</div>
+        </div>
+    </div>
+
+    <!-- Description -->
+    <div class="mb-2 text-justify font-['EB_Garamond']" [ngStyle]="{ 'font-size.px': fontSize }"
+        [innerHTML]="spell.description "></div>
+
+    <!-- Higher Levels -->
+    <div class="mb-2 text-justify font-['EB_Garamond']" [ngStyle]="{ 'font-size.px': fontSize }"
+        [innerHTML]="spell.atHigherLevels ? (spell.atHigherLevels) : ''"></div>
+
+    <!-- Footer -->
+    <div
+        class="absolute bottom-1 left-[3%] flex w-[94%] justify-around border-t-2 border-t-[rgba(0,0,0,0.4)] border-t-groove pt-1 font-['Cinzel_Decorative'] text-sm italic text-gray-800">
+        <div>{{ spell.class }}</div>
+        <div>{{ spell.components }}</div>
+        <!-- <div>{{ spell.source }}</div> -->
+    </div>
+</div>
