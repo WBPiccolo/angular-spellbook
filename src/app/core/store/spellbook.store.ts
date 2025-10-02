@@ -18,6 +18,7 @@ export const SpellStore = signalStore(
     withState(initialSpellState),
     withMethods((store, spellbookService = inject(SpellbookService)) => ({
         addSpell: (newSpell: Spell) => patchState(store, { spells: [...store.spells(), { ...newSpell, spellID: newSpell.spellID ? newSpell.spellID : new Date().getTime() + store.spells().length }] }),
+        updateSpell: (spell: Spell) => patchState(store, { spells: [...store.spells().map(s => s.spellID === spell.spellID ? spell : s)] }),
         deleteSpell: (spell: Spell) => patchState(store, { spells: [...store.spells().filter(savedSpell => savedSpell.spellID != spell.spellID)] }),
         saveSpellbookToLocalStorage: () => {
             localStorage.setItem(localStorageKey, JSON.stringify(store.spells()));

@@ -1,1 +1,9 @@
-<p>spell-chip-container works!</p>
+<div class="flex flex-row flex-wrap gap-4">
+    @for(spell of spells; track $index) {
+    <div class="px-2 py-1 flex flex-row items-center gap-2 border rounded-3xl cursor-pointer"
+    [ngStyle]="{'border-color': colors[spell.class]}">
+        <div (click)="spellClicked.emit(spell)"> {{spell.name}}</div>
+        <div class="px-2 rounded-full hover:bg-slate-300" (click)="deleteSpellClicked.emit(spell)"> x </div>
+    </div>
+    }
+</div>

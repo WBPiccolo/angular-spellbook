@@ -3,10 +3,11 @@ import { InsertSpellForm } from '../../features/insert-spell-form/insert-spell-f
 import { Spellbook } from "../../features/spellbook/spellbook";
 import { SpellStore } from '../../core/store/spellbook.store';
 import { Spell } from '../../shared/models/spell.interface';
+import { SpellChipContainer } from "../../features/spell-chip-container/spell-chip-container";
 
 @Component({
   selector: 'app-main-page',
-  imports: [InsertSpellForm, Spellbook],
+  imports: [InsertSpellForm, Spellbook, SpellChipContainer],
   templateUrl: './main-page.html',
   styleUrl: './main-page.scss',
 })
@@ -49,7 +50,11 @@ export class MainPage implements OnInit {
 
   updateSpell(spell: Spell) {
     this.isAccordionOpen = false;
-    //this.spellbookStore.updateSpell(spell);
+    this.spellbookStore.updateSpell(spell);
+  }
+
+  deleteSpell(spell: Spell) {
+    this.spellbookStore.deleteSpell(spell);
   }
 
   print() {
