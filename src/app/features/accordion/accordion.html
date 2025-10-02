@@ -1,19 +1,7 @@
-<div class="border border-gray-500 rounded p-2.5 relative min-h-[15px]">
-    <!-- Header -->
-    <div 
-      class="flex flex-row-reverse italic absolute -top-2.5 w-[95%] bg-white px-[1%] cursor-pointer"
-      (click)="toggle()"
-    >
-      {{ isOpen ? openHeader : closeHeader }}
-    </div>
-  
-    <!-- Body with Tailwind animation -->
-    <div 
-      class="p-1 overflow-hidden transition-all duration-300 ease-in-out"
-      [class.max-h-0]="!isOpen"
-      [class.max-h-[1000px]]="isOpen"
-    >
-      <ng-content></ng-content>
-    </div>
+<div [class.open]="isOpen">
+  <div class="overflow-hidden transition-all duration-500 ease-in-out"
+       [class.max-h-0]="!isOpen"
+       [class.max-h-[1000px]]="isOpen">
+    <ng-content></ng-content>
   </div>
-  
+</div>

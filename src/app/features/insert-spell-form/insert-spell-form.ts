@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Accordion } from "../accordion/accordion";
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Spell } from '../../shared/models/spell.interface';
@@ -12,6 +12,18 @@ import { LEVELS } from '../../shared/const/levels.const';
   styleUrl: './insert-spell-form.scss'
 })
 export class InsertSpellForm {
+  @Input() isAccordionOpen: boolean = false;
+  @Input() set currentSpell(spell: Spell | null) {
+    this.isEditMode = !!spell;
+    if (!spell) {
+      return;
+    }
+
+    this.spellForm.patchValue(spell)
+  }
+  
+  isEditMode: boolean = false;
+
   spellForm: FormGroup = new FormGroup({
     name: new FormControl<string>('', Validators.required),
     level: new FormControl<number>(0),
@@ -34,6 +46,19 @@ export class InsertSpellForm {
   levels = LEVELS;
   colors = CLASS_COLORS;
 
-  @Output() addSpellClicked = new EventEmitter<Spell>()
+  @Output() saveNewSpellClicked = new EventEmitter<Spell>()
+  @Output() updateSpellClicked = new EventEmitter<Spell>()
 
+  emitSaveSpell() {
+    this.saveNewSpellClicked.emit(this.spellForm.value)
+  }
+
+  emitUpdateSpell() {
+    this.updateSpellClicked.emit(this.spellForm.value)
+  }
+
+  resetForm() {
+    this.isEditMode = false;
+    this.spellForm.reset();
+  }
 }

@@ -1,5 +1,5 @@
-<app-accordion openHeader="close form" closeHeader="open form">
-    <form [formGroup]="spellForm">
+<app-accordion [isOpen]="isAccordionOpen">
+    <form [formGroup]="spellForm" class="p-2">
         <div class="flex justify-between item-center mb-4 gap-4">
             <div class="basis-2/5">
                 <label for="formControlName" class="block font-bold mb-1.5">Spell name</label>
@@ -27,7 +27,7 @@
                 </select>
             </div>
 
-            <div class="basis-1/5 flex flex-col items-center justify-end">
+            <div class="basis-1/5 flex flex-col justify-end">
                 <label class="flex items-center">
                     <input id="formControlRequiresConcentration" type="checkbox" formControlName="requiresConcentration"
                         class="mr-1" />
@@ -36,7 +36,7 @@
 
                 <label class="flex items-center">
                     <input id="formControlIsRitual" type="checkbox" formControlName="isRitual" class="mr-1" />
-                    <span>isRitual</span>
+                    <span>Ritual</span>
                 </label>
             </div>
         </div>
@@ -91,5 +91,15 @@
                 </select>
             </div>
         </div>
+        <div class="flex space-between w-full">
+
+            @if(isEditMode) {
+            <button (click)="resetForm()">reset</button>
+            <button (click)="emitUpdateSpell()">update spell</button>
+            } @else {
+            <button (click)="emitSaveSpell()">Save spell</button>
+            }
+        </div>
+
     </form>
 </app-accordion>

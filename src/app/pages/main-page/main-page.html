@@ -1,14 +1,29 @@
 <div class="px-96 py-10">
-    <div class="mb-32">
-        <span (click)="spellbookStore.saveSpellbookToFile()">SALVA JSON</span>
-        <input [disabled]="false" id="file-upload" type="file" class="hidden" (change)="fileChanged($event)"
+    <div class="flex flex-row justify-between">
+        <div>
+            Current Spells:
+            {{spellbookStore.spells().length}}
+        </div>
+        <div class="flex flex-row gap-2">
+            <button (click)="spellbookStore.saveSpellbookToFile()">Export JSON</button>
+            <input [disabled]="false" id="file-upload" type="file" class="hidden" (change)="fileChanged($event)"
             accept=".json" #fileUpload />
-        <button [disabled]="false" (click)="fileUpload.click()">IMPORT</button>
-        <!-- <span (click)="print()">print</span> -->
+            <button (click)="fileUpload.click()" >Import JSON</button>
+            <button (click)="addSpell()" [disabled]="isAccordionOpen">Add a spell</button>
+            <button (click)="print()">Print</button>
+        </div>
 
     </div>
-    <!-- <app-insert-spell-form></app-insert-spell-form> -->
+    <app-insert-spell-form [currentSpell]="selectedSpell" [isAccordionOpen]="isAccordionOpen" (saveNewSpellClicked)="saveSpell($event)" (updateSpellClicked)="updateSpell($event)"></app-insert-spell-form>
 
-    <app-spellbook id="spellbook"></app-spellbook>
+    <!-- <div class="flex flex-row flex-wrap gap-4 cursor-pointer">
+    @for(spell of spellbookStore.spells(); track $index) {
+        <div class="px-4 py-2 flex flex-row items-center gap-2 border border-red-500 rounded-xl">
+            <div (click)="setActiveSpell(spell)"> {{spell.name}}</div>
+            <div  class="px-2 rounded-full hover:bg-slate-300"> x </div>
+        </div>
+    }  -->
+</div>
+    <!-- <app-spellbook id="spellbook"></app-spellbook> -->
 
 </div>
